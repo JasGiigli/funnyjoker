@@ -1,8 +1,12 @@
 require("dotenv").config();
 const express = require("express");
+const path = require("path"); // Don't forget to include the 'path' module
 const app = express();
 const port = process.env.PORT || 4000; // Use the environment port or default to 4000
-app.use(express.static("dist"));
+
+// Serve static files from the 'dist' folder inside the 'backend' directory
+app.use(express.static(path.join(__dirname, "dist")));
+
 app.get("/api/jokes", (req, res) => {
   const jokes = [
     {
@@ -18,12 +22,12 @@ app.get("/api/jokes", (req, res) => {
     {
       id: 3,
       title: "Jokes-3",
-      content: "This is my 3joke.",
+      content: "This is my 3rd joke.",
     },
     {
       id: 4,
       title: "Jokes-4",
-      content: "This is my 4 joke.",
+      content: "This is my 4th joke.",
     },
     {
       id: 5,
